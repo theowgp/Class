@@ -1,4 +1,4 @@
-function u = lsstep(dJ, y, uold, t, target, alpha, beta, nu, n, h, a, B, sigma)
+function [kA, u] = lsstep(dJ, y, uold, t, target, alpha, beta, nu, n, h, a, B, sigma, limitA)
 
 s = 1;
 
@@ -9,7 +9,7 @@ Jtemp = objective(y, utemp, t, target, alpha, beta, nu, n, h);
 
 
 k=0;%to prevent looping
-while( (Jtemp > (Jold - s*sigma*norm(dJ)^2)) && k<25 )
+while( (Jtemp > (Jold - s*sigma*norm(dJ)^2)) && k < limitA )
     s = s*0.5;
     %s = s/2;
     
@@ -20,8 +20,12 @@ while( (Jtemp > (Jold - s*sigma*norm(dJ)^2)) && k<25 )
     
     k=k+1;
 end
-armjoK=k;
+kA=k;
 %s=1;
-u = uold - s*dJ;
+if kA < limitA
+    u = uold - s*dJ;
+else
+    u = uold;
+end
 
 end

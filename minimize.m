@@ -1,4 +1,4 @@
-function [y, u] = minimize(p, y , y0, u, t, target, alpha, beta, nu, n, h, a, B, sigma, eps)
+function [y, u] = minimize(p, y , y0, u, t, target, alpha, beta, nu, n, h, a, B, sigma, eps, limitN, limitA)
                      
     %%
     %run Euler methods for y and p (initial)
@@ -24,8 +24,9 @@ function [y, u] = minimize(p, y , y0, u, t, target, alpha, beta, nu, n, h, a, B,
     %%
 
 k=0;%to prevent looping
-while((norm(dj)>eps) && (k<100))
-    u=lsstep(dj, y, u, t, target, alpha, beta, nu, n, h, a, B, sigma);
+kA=0;
+while( mynorm(dj, h)>eps && k<limitN && kA<limitA)
+    [kA, u] =lsstep(dj, y, u, t, target, alpha, beta, nu, n, h, a, B, sigma, limitA);
     
     
     %run Euler methods for y and p
@@ -54,20 +55,21 @@ while((norm(dj)>eps) && (k<100))
     
     %%
     %print norm of the gradient at each step of the line search method
-    gradJk = norm(dj);
+    gradJk = mynorm(dj, h);
     %%
     
     %%
     %print value of the objective function
-    objective(y, u, t, target, alpha, beta, nu, n, h)
-    %%
+    objective(y, u, t, target, alpha, beta, nu, n, h);
     
+    %%
+    k;
 end
 
 %%
 %print the number of iterations and agradient of J at each iteration
-linesearchK=k;
-gradJk=norm(dj);
+kLS=k;
+gradJk=mynorm(dj, h);
 %%
 
 end
