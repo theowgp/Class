@@ -1,0 +1,7 @@
+function df = df(y, u, t, a, B)
+
+dfdy = a*(1+t);
+
+
+end
+

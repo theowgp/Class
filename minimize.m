@@ -20,6 +20,7 @@ while( mynorm(dj, h)>eps && k<limitN && kA<limitA)
         
     x  = ForwardEquation(x, u, t, n, h, a, B);
         
+    %p(n+1) = -alpha*(x(n+1) -target);!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     p  = AdjointEquation(p, x, u, t, n, h, a, B, beta);
    
     dj = dJ(p, x, u,  nu, B);

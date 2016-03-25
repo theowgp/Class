@@ -1,6 +1,6 @@
-function dfdy = dfdy(y, u, t, a, B)
+function df = df(x, t, a)
 
-dfdy = a*(1+t);
+df = a*(1+t);
 
 
 end
