@@ -1,10 +1,10 @@
-function J = objective(y, u, t, target, alpha, beta, nu, n, h)
+function J = J(y, u, t, target, alpha, beta, nu, n, h)
                       
 
 d1=0;
 d2=0;
 for i=2:n+1% or  1:n+1 ???????????????????????
-    d1 = d1 + (y(i) - yd(t(i)))^2;
+    d1 = d1 + (y(i) - xd(t(i)))^2;
     d2 = d2 + u(i)^2;
 end
 

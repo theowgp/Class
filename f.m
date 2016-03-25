@@ -1,6 +1,6 @@
-function f = f(y, u, t, a ,B)
+function f = f(x, u, t, a ,B)
 
-f = a*(1+t)*y + B*u;
+f = a*(1+t)*x + B*u;
 
 end
 
