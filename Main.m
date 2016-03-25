@@ -16,7 +16,7 @@ y0 = yd(0);
 a = 1;
 alpha = 1;
 beta = 1;%    
-nu = 0.0001;
+nu = 0.1;
 %target = 1;
 target = yd(T);
 %for the line search method
@@ -68,17 +68,18 @@ u = -t.^2;
 plot(t,y);
 hold all
 %% plot the decided trajectory y
-f = @(t) yd(t);
-fplot(f, [0, T]);
+% f = @(t) yd(t);
+% fplot(f, [0, T]);
 
 %%
 %print value of the objective function
+display('J: ');
 objective(y, u, t, target, alpha, beta, nu, n, h)
 
 %%
 %display the error between y and yex
-%display('L2n error:');
-%errL2nfory(y, t, n, h, y0, a)
+display('L2n error: ');
+errL2n(y, t, n, h)
 
 %plot p in a new figure
 %figure
