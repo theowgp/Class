@@ -4,7 +4,7 @@ clear alpha a B beta nu sigma eps h  p t T target y y0 yex u % and n if to use t
 
 
 %interval [0, T]
-T = 0.4;%1/2;
+T = 1;%1/2;
 %n = 256;
 h = T/n;
 t = 0:h:T;
@@ -73,13 +73,15 @@ fplot(f, [0, T]);
 
 %%
 %print value of the objective function
+display('=============================================');
 display('J: ');
 J(x, u, t, target, alpha, beta, nu, n, h)
 
 %%
 %display the error between y and yex
-display('L2n error: ');
+display('||x-xd||: ');
 errL2n(x, t, n, h)
+display('=============================================');
 
 %plot p in a new figure
 %figure
